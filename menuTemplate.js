@@ -1,12 +1,12 @@
 const { ipcMain } = require("electron");
 module.exports = {
-    getTray(wind){
-        let template =[
+    getTray(wind){ //template do tray
+        let template =[ 
             {label: "Calculadora"},
             {type:"separator"},
 
             {
-                label:"info", click: () => {
+                label:"info", click: () => { //evento para abrir tela de info
                     wind.send('tela-sobre');
                 }
                 
@@ -18,12 +18,12 @@ module.exports = {
       let templateMenu = [
         {
           label: "View",
-          submenu: [
+          submenu: [ 
             {
-              role: "reload",
+              role: "reload", //recarega a pagina
             },
             {
-              role: "toggledevtools",
+              role: "toggledevtools", //abre e fecha console
             },
           ],
         },
@@ -31,10 +31,10 @@ module.exports = {
           label: "Window",
           submenu: [
             {
-              role: "minimize",
+              role: "minimize", //minimizar
             },
             {
-              role: "close",
+              role: "close", // fecha a aplicação
             },
           ],
         },
@@ -44,18 +44,18 @@ module.exports = {
             {
               label: "Info",
               click: () => {
-                ipcMain.emit("abre-tela-sobre");
+                ipcMain.emit("abre-tela-sobre"); //evento para abrir tela info
               },
             },
           ],
         },
       ];
-      if (process.platform == "darwin") {
+      if (process.platform == "darwin") { //caso o O.S. seja Mac, coloca o primeiro label para criar o menu
         templateMenu.unshift({
           label: app.getName(),
           submenu: [
             {
-              label: "Estou rodando no Mac!",
+              label: "Mac",
             },
           ],
         });

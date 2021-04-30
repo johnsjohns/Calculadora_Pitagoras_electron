@@ -1,9 +1,9 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu}  = require("electron");
 const trayTemplate = require('./menuTemplate')
 let tray = null
-app.on("ready", () => {
+app.on("ready", () => { //iniciando aplicação
     console.log("aplicação iniciada");
-    let mainWindow = new BrowserWindow({
+    let mainWindow = new BrowserWindow({ //criando pagina principal
         width: 600,
         height: 400,
         webPreferences: {
@@ -12,28 +12,16 @@ app.on("ready", () => {
         }
     });
 
-    tray = new Tray(`${__dirname}/app/img/tray.png`);
-    let template = trayTemplate.getTray(mainWindow)
-    let trayMenu = Menu.buildFromTemplate(template);
-    
-
-    tray.setContextMenu(trayMenu);
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 
-    let templateMenu = trayTemplate.geraMenuPrincipalTemplate(app);
-    let menuPrincipal = Menu.buildFromTemplate(templateMenu);
-    Menu.setApplicationMenu(menuPrincipal);
-    
-    if(process.platform == 'darwin') {
-        templateMenu.unshift({
-            label: app.getName(),
-            submenu: [
-                { label: 'Estou rodando no Mac!' }
-            ]
-        });
-     }
-    
-    Menu.setApplicationMenu(menuPrincipal);
+    tray = new Tray(`${__dirname}/app/img/tray.png`); // carregando icone da barra atalho
+    let template = trayTemplate.getTray(mainWindow);  // carrega os templates da tray
+    let trayMenu = Menu.buildFromTemplate(template);  // criar os itens do tray
+    tray.setContextMenu(trayMenu);//cria tray icon
+    let templateMenu = trayTemplate.geraMenuPrincipalTemplate(app); // carrega template do menu 
+    let menuPrincipal = Menu.buildFromTemplate(templateMenu); //carrega os item no menu 
+    Menu.setApplicationMenu(menuPrincipal);//cria menu
+   
 });
 
 
