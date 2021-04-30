@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu}  = require("electron");
-const trayTemplate = require('./trayTemplate')
+const trayTemplate = require('./menuTemplate')
 let tray = null
 app.on("ready", () => {
     console.log("aplicação iniciada");
@@ -19,6 +19,21 @@ app.on("ready", () => {
 
     tray.setContextMenu(trayMenu);
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+
+    let templateMenu = trayTemplate.geraMenuPrincipalTemplate(app);
+    let menuPrincipal = Menu.buildFromTemplate(templateMenu);
+    Menu.setApplicationMenu(menuPrincipal);
+    
+    if(process.platform == 'darwin') {
+        templateMenu.unshift({
+            label: app.getName(),
+            submenu: [
+                { label: 'Estou rodando no Mac!' }
+            ]
+        });
+     }
+    
+    Menu.setApplicationMenu(menuPrincipal);
 });
 
 
