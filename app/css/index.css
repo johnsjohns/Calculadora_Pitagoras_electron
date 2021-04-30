@@ -1,0 +1,45 @@
+body{
+    background-color: beige;
+}
+
+.container{
+    display: flex;
+    
+}
+.container .imagem img{
+    width: 250px;
+}
+
+.container form{
+    text-align: center;
+    margin-top: 30px;
+    
+}
+
+.container form div{
+    margin: 30px 0;
+}
+
+.container form input{
+    border-radius: 5px;
+    outline-style: none;
+}
+
+.container form button{
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: 180px;
+    outline-style: none;
+    box-shadow: 0px 0px 3px 1px  #808080;
+    }
+
+.container form button:active{
+    background-color: #808080;
+}
+
+.resposta{
+    margin-top: 0px;
+    margin-left: 310px;
+    
+}
+

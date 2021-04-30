@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>Calculadora Pitagoras</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="imagem"><img src="./img/icon.png"> </div>
+      <form>
+        <div>
+          <label for="cateto1">Cateto a: </label>
+          <input type="text" name="cateto1" id="cateto1"/>
+        </div>
+        <div>
+          <label for="cateto2">Cateto b: </label>
+          <input type="text" name="cateto2" id="cateto2"/>
+        </div>
+        <button>Calcular</button>
+      </form>
+    </div>
+    <div class='resposta'>
+Hipotenusa:
+    <span id="hipotenusa"></p>
+  </div>
+    <script src="js/renderer.js"></script>
+    <script src="js/calcular.js"></script>
+  </body>
+</html>
